@@ -23,9 +23,9 @@ const server = new Ws("ws://localhost:8090");
 server
   .run()
   .then(socket => {
-    const timer = setInterval(() => {
-      socket.send("socket is run!");
-    }, 1000);
+    setTimeout(() => {
+      socket.send("hello");
+    }, 10000);
     socket.onmessage = e => {
       console.log("data :", e.data);
     };

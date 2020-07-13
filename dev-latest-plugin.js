@@ -1,4 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebSocket = require("ws");
+const simpleGit = require("simple-git");
+
+const wss = new WebSocket.Server({ port: 8090 });
 
 class DevLatestPlugin {
   apply(compiler) {
@@ -17,8 +21,25 @@ class DevLatestPlugin {
               src: "http://localhost:3000/"
             }
           });
-          // Tell webpack to move on
+
+          const git = simpleGit();
+
+          wss.on("connection", function connection(ws) {
+            ws.on("message", function incoming(message) {
+              console.log("received: %s", message);
+              ws.send("yeah");
+            });
+            setInterval(() => {
+              git.log((err, data) => {
+                ws.send(data.all.pop().hash);
+              });
+            }, 5000);
+          });
+
           cb(null, data);
+
+          // Tell webpack to move on
+          // cb(null, data);
         }
       );
     });

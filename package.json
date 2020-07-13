@@ -4,9 +4,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --open"
   },
   "dependencies": {
+    "simple-git": "^2.12.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "ws": "^7.3.1"
