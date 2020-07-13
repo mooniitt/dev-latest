@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "ws": "^7.3.1"
+  }
+}
