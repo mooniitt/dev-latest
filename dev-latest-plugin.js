@@ -1,8 +1,19 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebSocket = require("ws");
 const simpleGit = require("simple-git");
+const fs = require("fs");
 
 const wss = new WebSocket.Server({ port: 8090 });
+const git = simpleGit();
+
+function getHash() {
+  return new Promise((resolve, reject) => {
+    git.log((err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
 
 class DevLatestPlugin {
   apply(compiler) {
@@ -12,17 +23,21 @@ class DevLatestPlugin {
       HtmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync(
         "DevLatestPlugin", // <-- Set a meaningful name here for stacktraces
         (data, cb) => {
-          // Manipulate the content
-          data.bodyTags.push({
-            tagName: "script",
-            attributes: {
-              defer: false,
-              //   src: "http://www.zhifuchedao.xyz:3000/"
-              src: "http://localhost:3000/"
-            }
+          getHash().then(res => {
+            // Manipulate the content
+            const jscode = fs.readFileSync("./heartbeat.js");
+            data.bodyTags.push({
+              tagName: "script",
+              attributes: {
+                defer: true,
+                id: "dev-latest",
+                hash: res.all.shift().hash
+              },
+              innerHTML: jscode
+            });
+            // Tell webpack to move on
+            cb(null, data);
           });
-
-          const git = simpleGit();
 
           wss.on("connection", function connection(ws) {
             ws.on("message", function incoming(message) {
@@ -31,15 +46,10 @@ class DevLatestPlugin {
             });
             setInterval(() => {
               git.log((err, data) => {
-                ws.send(data.all.pop().hash);
+                ws.send(data.all.shift().hash);
               });
             }, 5000);
           });
-
-          cb(null, data);
-
-          // Tell webpack to move on
-          // cb(null, data);
         }
       );
     });
