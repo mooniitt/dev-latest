@@ -4,12 +4,14 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "webpack --mode=production"
   },
   "dependencies": {
     "simple-git": "^2.12.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "ws": "^7.3.1"
-  }
+  },
+  "main": "./lib/dev-latest-plugin.js"
 }
