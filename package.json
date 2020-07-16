@@ -1,6 +1,6 @@
 {
   "name": "dev-latest-plugin",
-  "main": "./lib/dev-latest-plugin.js",
+  "main": "index.js",
   "description": "webpack 4.0 plugin, depended on html-webpack-plugin",
   "version": "0.0.1",
   "license": "MIT",
