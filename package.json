@@ -1,4 +1,14 @@
 {
+  "name": "dev-latest-plugin",
+  "main": "./lib/dev-latest-plugin.js",
+  "description": "webpack 4.0 plugin, depended on html-webpack-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Big Tao",
+  "files": [
+    "lib/",
+    "index.js"
+  ],
   "devDependencies": {
     "html-webpack-plugin": "^4.3.0",
     "webpack-dev-server": "^3.11.0"
@@ -12,6 +22,5 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "ws": "^7.3.1"
-  },
-  "main": "./lib/dev-latest-plugin.js"
+  }
 }
