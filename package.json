@@ -2,7 +2,7 @@
   "name": "dev-latest-plugin",
   "main": "index.js",
   "description": "webpack 4.0 plugin, depended on html-webpack-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": "Big Tao",
   "files": [
