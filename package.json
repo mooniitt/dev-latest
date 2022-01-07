@@ -1,6 +1,6 @@
 {
   "name": "devlatest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "give you a tips when current page is expired",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "html-webpack-plugin": "=3"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "object-hash": "^2.2.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
