@@ -1,6 +1,6 @@
 {
   "name": "devlatest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "give you a tips when current page is expired",
   "main": "index.js",
   "scripts": {
